@@ -14,6 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
         ]);
+        $middleware->alias([
+            'check_auth' => \App\Http\Middleware\CheckAuth::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
