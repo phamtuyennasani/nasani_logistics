@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
+use Tighten\Ziggy\Ziggy;
+
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -37,7 +39,21 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+            'config' => [
+                'app' => [
+                    'name' => config('app.name'),
+                    'url' => config('app.url'),
+                ],
+            ],
+            'request' => [
+                'url' => $request->url(),
+                'fullUrl' => $request->fullUrl(),
+                'query' => $request->query(),
+            ],
+            'ziggy' => [
+                ...(new Ziggy)->toArray(),
+                'location' => $request->url(),
+            ],
         ];
     }
 }

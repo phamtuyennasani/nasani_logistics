@@ -17,6 +17,14 @@ Route::middleware(['check_auth'])->group(function () {
     });
 });
 
+Route::get('/contact',function(){
+    return Inertia::render('Contact');
+})->name('contact');
+
+Route::get('/about',function(){
+    return Inertia::render('About');
+})->name('about');
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', function () {
         return Inertia::render('Auth/Login');
