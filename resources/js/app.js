@@ -7,7 +7,18 @@ import LaravelHelpers from './Plugins/LaravelHelpers';
 import PrimeVue from 'primevue/config';
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
-import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/index.esm.js';
+import { ZiggyVue } from 'ziggy-js';
+import { Ziggy } from './ziggy';
+import { route } from 'ziggy-js';
+
+window.Ziggy = {
+    ...Ziggy,
+    url: window.location.origin,
+    location: window.location,
+};
+window.route = route;
+
+
 import { Toaster, toast } from 'vue-sonner'
 const MyPreset = definePreset(Aura, {
     semantic: {
@@ -38,7 +49,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         return createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(ZiggyVue, props.initialPage.props.ziggy)
+            .use(ZiggyVue, Ziggy)
             .component('Toaster', Toaster)
             .use(LaravelHelpers)
             .use(PrimeVue, {

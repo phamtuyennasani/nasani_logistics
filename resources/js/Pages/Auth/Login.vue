@@ -110,9 +110,9 @@ const handleKeydown = (e) => {
                                     <p class="text-[0.9375rem] text-black">
                                         Password <span class="text-[#2F71DE]">*</span>
                                     </p>
-                                    <a href="javascript:;" class="text-[#959595] text-[0.9375rem] inline-block">
+                                    <Link :href="route('login')" class="text-[#959595] text-[0.9375rem] inline-block">
                                         Quên mật khẩu?
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div
                                     class="relative p-[0.2rem_0.69rem] flex items-center justify-between border border-[#EAF1F7] rounded-[0.625rem] bg-[#F1F7FC]">
@@ -127,7 +127,7 @@ const handleKeydown = (e) => {
                                     <InputText :type="passwordVisible ? 'text' : 'password'" @keydown="handleKeydown"
                                         @input="form.password = removeVietnameseAndSpaces(form.password)"
                                         class="text-[#8A8A8C] text-[0.875rem] shadow-none border-none bg-transparent flex-1"
-                                        placeholder="Nhập mật khẩu" v-model="form.password" />
+                                        placeholder="Nhập mật khẩu" v-model="form.password" autocomplete="off" />
                                     <span class="flex items-center" @click="passwordVisible = !passwordVisible">
                                         <i :class="passwordVisible ? 'pi pi-eye' : 'pi pi-eye-slash'"
                                             class="text-[1rem] cursor-pointer text-[#2F71DE]"></i>
