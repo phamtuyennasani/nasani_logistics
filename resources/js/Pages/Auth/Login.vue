@@ -12,16 +12,21 @@ const passwordVisible = ref(false);
 const onFormSubmit = () => {
     if (form.username && form.password) {
         const response = form.post('/login', {
-            preserveState: true,
             onSuccess: () => {
                 toast.success('Đăng nhập thành công!', {
                     duration: 2000,
                 });
             },
-            onError: () => {
-                toast.error('Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.', {
-                    duration: 2000,
-                });
+            onError: (errors) => {
+                if (errors.username) {
+                    toast.error(errors.username, {
+                        duration: 3000,
+                    });
+                } else {
+                    toast.error('Đăng nhập thất bại! Vui lòng kiểm tra lại thông tin.', {
+                        duration: 2000,
+                    });
+                }
             },
         });
     } else {
@@ -84,7 +89,7 @@ const handleKeydown = (e) => {
                 </div>
                 <div class="box-form-login rounded-[1.125rem] bg-[#F0F0F0]">
                     <div class="with-form rounded-[1.125rem] border border-[#EBEBEB] bg-[#FFF] p-[1.375rem]">
-                        <Form v-slot="$form" @submit="onFormSubmit" class="login-form" :form="form">
+                        <form @submit.prevent="onFormSubmit" class="login-form">
                             <div class="group-login mb-[1.38rem]">
                                 <p class="mb-3 text-[0.9375rem] text-black">
                                     Username <span class="text-[#2F71DE]">*</span>
@@ -143,7 +148,7 @@ const handleKeydown = (e) => {
                             </div>
                             <Button label="Đăng nhập" type="submit"
                                 class="w-full mt-4 text-[1.125rem] rounded-[0.625rem] border-none shadow-none bg-[#2F71DE] py-[0.9rem] text-white font-semibold leading-[1.375rem] -tracking-[0.0175rem]" />
-                        </Form>
+                        </form>
                     </div>
                     <div class="with-social mt-4 p-[1.375rem] pt-0">
                         <p class="text-center text-[0.75rem] leading-[1.25rem] -tracking-[0.015rem] text-[#5F5F5F]">
