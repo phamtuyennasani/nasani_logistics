@@ -31,7 +31,7 @@ class User extends Controller
         ];
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/manage');
+            return redirect()->intended('/quan-ly-don-hang');
         }
         throw ValidationException::withMessages([
             'username' => 'Mật khẩu không đúng',
