@@ -1,6 +1,7 @@
 <script setup>
 import LinkMenu from './LinkMenu.vue';
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
     menu: {
@@ -14,6 +15,21 @@ const toggle = (index) => {
     openMenus.value[index] = !openMenus.value[index];
 };
 const isOpen = (index) => !!openMenus.value[index];
+
+const page = usePage();
+const userRoles = computed(() => page.props.auth.roles || []);
+
+const hasPermission = (item) => {
+    if (!item.roles || item.roles.length === 0) return true;
+    return item.roles.some(role => userRoles.value.includes(role));
+};
+
+const visibleChildren = computed(() => {
+    if (!props.menu.children) return [];
+    return props.menu.children.filter(item => hasPermission(item));
+});
+
+// Transition hooks for slide animation
 const beforeEnter = (el) => {
     el.style.height = '0';
     el.style.overflow = 'hidden';
@@ -50,7 +66,7 @@ const leave = (el) => {
 <template>
     <div class="content-group-item">
         <ul class="space-y-[0.4rem]">
-            <li v-for="(child, i) in props.menu.children" :key="i"
+            <li v-for="(child, i) in visibleChildren" :key="i"
                 class="rounded-[0.4rem] pl-[2.25rem] py-[0.8rem] pr-4 hover:bg-[#ECF1F8] hover:text-[#2F71DE] transition-colors duration-200"
                 :class="$page.url.startsWith(child.to) ? 'bg-[#ECF1F8] text-[#2F71DE]' : 'text-base'">
                 <template v-if="!child.children || child.children.length === 0">
@@ -77,7 +93,7 @@ const leave = (el) => {
                         @before-leave="beforeLeave" @leave="leave">
                         <ul class="pl-2 mt-2" v-show="isOpen(i)">
                             <li v-for="(subChild, j) in child.children" :key="j"
-                                class="rounded-[0.4rem] pl-[2.25rem] py-[0.5rem] pr-4 hover:bg-[#ECF1F8] hover:text-[#2F71DE]"
+                                class="rounded-[0.4rem] pl-[2.25rem] py-2 pr-4 hover:bg-[#ECF1F8] hover:text-[#2F71DE]"
                                 :class="$page.url.startsWith(subChild.to) ? 'bg-[#ECF1F8] text-[#2F71DE]' : 'text-base'">
                                 <LinkMenu :href="subChild.to" :title="subChild.label" class="!font-medium" />
                             </li>

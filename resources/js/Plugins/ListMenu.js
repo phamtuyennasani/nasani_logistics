@@ -128,35 +128,41 @@ const DefaultIcon = {
 const ListMenu = [
     {
         title: 'Tác vụ',
+        roles: ['ADMIN'],
         children: [
             {
                 label: 'Đơn hàng',
                 icon: DefaultIcon.order,
                 to: '/quan-ly-don-hang',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Tạo đơn nhanh',
                 icon: DefaultIcon.createOrder,
                 to: '/tao-don-nhanh',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Quản lý công nợ',
                 icon: DefaultIcon.congno,
                 to: '/quan-ly-cong-no',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Quản lý tải',
                 icon: DefaultIcon.quanlytai,
                 to: '/quan-ly-tai',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Thống kê',
                 icon: DefaultIcon.thongke,
                 to: '/thong-ke',
+                roles: ['ADMIN'],
                 children: []
             },
 
@@ -164,61 +170,73 @@ const ListMenu = [
     },
     {
         title: 'KHÁCH HÀNG',
+        roles: ['ADMIN', 'CS'],
         children: [
             {
                 label: 'Địa chỉ gửi',
                 icon: DefaultIcon.diachigui,
                 to: 'khach-hang/dia-chi-gui',
+                roles: ['ADMIN', 'CS'],
                 children: []
             },
             {
                 label: 'Địa chỉ nhận',
                 icon: DefaultIcon.diachinhan,
                 to: 'khach-hang/dia-chi-nhan',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Khách hàng',
                 icon: DefaultIcon.khachhang,
                 to: 'khach-hang/danh-sach-khach-hang',
+                roles: ['ADMIN'],
                 children: []
             }
         ]
     },
     {
         title: 'NHÂN SỰ',
+        roles: ['ADMIN'],
         children: [
             {
                 label: 'Danh sách sale',
                 icon: DefaultIcon.sale,
                 to: 'nhan-su/danh-sach-sale',
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Nhân viên nội bộ',
                 icon: DefaultIcon.noibo,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Danh sách kế toán',
                         to: 'nhan-su/danh-sach-ke-toan',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Danh sách CS',
                         to: 'nhan-su/danh-sach-cs',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Danh sách OPS',
                         to: 'nhan-su/danh-sach-ops',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Nhân sự quản lý',
                 icon: DefaultIcon.nhansuquanly,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Danh sách Manager',
                         to: 'nhan-su/danh-sach-manager',
+                        roles: ['ADMIN'],
                     }
                 ]
             }
@@ -226,150 +244,184 @@ const ListMenu = [
     },
     {
         title: 'DỮ LIỆU',
+        roles: ['ADMIN'],
         children: [
             {
                 label: 'Dịch vụ',
                 icon: DefaultIcon.dichvu,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Dịch vụ chính',
                         to: 'dich-vu/dich-vu-chinh',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Dịch vụ chi tiết',
                         to: 'dich-vu/dich-vu-chi-tiet',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Dịch vụ đi kèm',
                         to: 'dich-vu/dich-vu-di-kem',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Tình trạng đơn',
                         to: 'dich-vu/tinh-trang-don',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Trạng thái',
                 icon: DefaultIcon.trangthai,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Trạng thái đơn hàng',
                         to: 'trang-thai/trang-thai-don-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Trạng thái tải hàng',
                         to: 'trang-thai/trang-thai-tai-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Thanh toán khách hàng',
                         to: 'trang-thai/thanh-toan-khach-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Thanh toán NCC',
                         to: 'trang-thai/thanh-toan-ncc',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Trạng thái công nợ',
                         to: 'trang-thai/trang-thai-cong-no',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Trạng thái chi hộ',
                         to: 'trang-thai/trang-thai-chi-ho',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Đơn vị',
                 icon: DefaultIcon.donvi,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Loại kiện',
                         to: 'don-vi/loai-kien',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Hàng hóa (Loại của kiện)',
                         to: 'don-vi/loai-hang-hoa',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Phân loại',
                 icon: DefaultIcon.phanloai,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Loại bưu gửi',
                         to: 'phan-loai/loai-buu-gui',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Lý do gửi hàng',
                         to: 'phan-loai/ly-do-gui-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Hình thức gửi hàng',
                         to: 'phan-loai/hinh-thuc-gui-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Delivery Term',
                         to: 'phan-loai/delivery-term',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Quốc gia',
                 icon: DefaultIcon.quocgia,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Danh sách quốc gia',
                         to: 'quoc-gia/danh-sach-quoc-gia',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Tỉnh / Thành phố',
                         to: 'quoc-gia/thanh-pho',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Phường xã',
                         to: 'quoc-gia/phuong-xa',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Đại lý',
                 icon: DefaultIcon.daily,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Chi nhánh nhận hàng',
                         to: 'dai-ly/chi-nhanh-nhan-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Danh sách đại lý',
                         to: 'dai-ly/danh-sach-dai-ly',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Danh sách hãng bay',
                         to: 'dai-ly/danh-sach-hang-bay',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Đối tác chung chuyển',
                         to: 'dai-ly/doi-tac-chung-chuyen',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Phụ phí',
                 icon: DefaultIcon.phuphi,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Phụ phí mua',
                         to: 'phu-phi/phu-phi-mua',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Phụ phí bán',
                         to: 'phu-phi/phu-phi-ban',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Loại chi hộ',
                         to: 'phu-phi/loai-chi-ho',
+                        roles: ['ADMIN'],
                     }
                 ]
             }
@@ -377,46 +429,56 @@ const ListMenu = [
     },
     {
         title: 'Cấu hình',
+        roles: ['ADMIN'],
         children: [
             {
                 label: 'Chính sách',
                 icon: DefaultIcon.chinhsach,
+                roles: ['ADMIN'],
                 children: [
                     {
                         label: 'Chính sách điều khoản',
                         to: 'chinh-sach/dieu-khoan',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Quy định tạo đơn',
                         to: 'chinh-sach/quy-dinh-tao-don',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Chính sách bảo mật',
                         to: 'chinh-sach/bao-mat',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Quy định khai hàng',
                         to: 'chinh-sach/quy-dinh-khai-hang',
+                        roles: ['ADMIN'],
                     },
                     {
                         label: 'Quy định thêm tải',
                         to: 'chinh-sach/quy-dinh-them-tai',
+                        roles: ['ADMIN'],
                     }
                 ]
             },
             {
                 label: 'Quản lý thông báo',
                 icon: DefaultIcon.phuphi,
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Thông tin công ty',
                 icon: DefaultIcon.phuphi,
+                roles: ['ADMIN'],
                 children: []
             },
             {
                 label: 'Thông tin tài khoản',
                 icon: DefaultIcon.phuphi,
+                roles: ['ADMIN'],
                 children: []
             },
         ]

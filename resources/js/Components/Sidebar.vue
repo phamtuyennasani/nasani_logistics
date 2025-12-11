@@ -2,7 +2,20 @@
 import ListMenu from '@/Plugins/ListMenu';
 import BlockMenu from './ItemMenu/BlockMenu.vue';
 import Scrollbar from 'smooth-scrollbar';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, computed } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+
+const page = usePage();
+const userRoles = computed(() => page.props.auth.roles || []);
+
+const hasPermission = (item) => {
+    if (!item.roles || item.roles.length === 0) return true;
+    return item.roles.some(role => userRoles.value.includes(role));
+};
+
+const filteredListMenu = computed(() => {
+    return ListMenu.filter(item => hasPermission(item));
+});
 const scrollContainer = ref(null);
 let scrollbarInstance = null;
 
@@ -26,7 +39,7 @@ onBeforeUnmount(() => {
     <div class="group-aside flex-1 overflow-hidden pr-[1.25rem] relative" ref="scrollContainer">
         <div class="wrap-show-menu">
             <div class="menu-scrollable space-y-[1.5rem] pb-4">
-                <div class="group-item-aside" v-for="(menu, index) in ListMenu" :key="index">
+                <div class="group-item-aside" v-for="(menu, index) in filteredListMenu" :key="index">
                     <div class="title-group-item mb-[0.81rem] px-[1.12rem]">
                         <p class="mb-0 text-title-sidebar text-[1.125rem] font-medium uppercase">{{ menu.title }}</p>
                     </div>
@@ -35,5 +48,4 @@ onBeforeUnmount(() => {
             </div>
         </div>
     </div>
-
 </template>
