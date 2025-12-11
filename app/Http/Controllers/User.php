@@ -20,7 +20,7 @@ class User extends Controller
                 'username' => 'Tài khoản không tồn tại',
             ]);
         }
-        if ($user->active == 0) {
+        if (!$user->hasRole('ADMIN') && $user->active == 0) {
             throw ValidationException::withMessages([
                 'username' => 'Tài khoản chưa được kích hoạt',
             ]);
@@ -29,11 +29,10 @@ class User extends Controller
             'username' => $request->username,
             'password' => $request->password,
         ];
-        // if (Auth::attempt($credentials, $request->boolean('remember'))) {
-        //     $request->session()->regenerate();
-
-        //     return redirect()->intended('/');
-        // }
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->intended('/manage');
+        }
         throw ValidationException::withMessages([
             'username' => 'Mật khẩu không đúng',
         ]);

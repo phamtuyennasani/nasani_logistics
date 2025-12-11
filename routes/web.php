@@ -8,26 +8,25 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-Route::middleware(['check_auth'])->group(function () {
-    Route::get('/', function () {
-        return Inertia::render('Welcome', [
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
-    });
-});
-
-Route::get('/contact',function(){
-    return Inertia::render('Contact');
-})->name('contact');
-
-Route::get('/about',function(){
-    return Inertia::render('About');
-})->name('about');
-
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', function () {
         return Inertia::render('Auth/Login');
     })->name('login');
     Route::post('/login', [App\Http\Controllers\User::class, 'login']);
 });
+
+Route::get('/quan-ly-don-hang', function () {
+    return Inertia::render('Manage/Dashboard');
+})->name('manage');
+Route::get('/tao-don-nhanh', function () {
+    return Inertia::render('Order/Create');
+})->name('createorder');
+Route::get('/quan-ly-cong-no', function () {
+    return Inertia::render('CongNo/Index');
+})->name('qlcongno');
+Route::get('/quan-ly-tai', function () {
+    return Inertia::render('TaiHang/Index');
+})->name('qltai');
+Route::get('/thong-ke', function () {
+    return Inertia::render('ThongKe/Index');
+})->name('thongke');
