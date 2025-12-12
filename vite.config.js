@@ -30,6 +30,9 @@ export default defineConfig({
         alias: {
             '@': path.resolve('resources/js'),
             '@component': path.resolve('resources/js/Components'),
+            '@layout': path.resolve('resources/js/Layouts'),
+            '@plugin': path.resolve('resources/js/Plugins'),
+            '@utils': path.resolve('resources/js/Utils'),
             '@images': path.resolve('resources/images'),
             '@fonts': path.resolve('resources/fonts'),
         },

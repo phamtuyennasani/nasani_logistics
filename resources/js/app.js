@@ -2,8 +2,8 @@ import '../css/app.css';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
-import AppLayout from './Layouts/AppLayout.vue'
-import LaravelHelpers from './Plugins/LaravelHelpers';
+import AppLayout from '@layout/AppLayout.vue'
+import LaravelHelpers from '@plugin/LaravelHelpers';
 import PrimeVue from 'primevue/config';
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';

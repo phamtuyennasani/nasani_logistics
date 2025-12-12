@@ -5,6 +5,8 @@
 @theme{
     --color-title-sidebar: #7C7C7C;
     --color-base: #222222;
+    --color-primary: #2F71DE;
+    --color-primary-hover: #E65C00;
 }
 @layer base {
     html {

@@ -20,12 +20,10 @@ const stopLoading = () => {
     }
     isLoading.value = false;
 };
-
 onMounted(() => {
     removeStartListener = router.on('start', startLoading);
     removeFinishListener = router.on('finish', stopLoading);
 });
-
 onUnmounted(() => {
     if (removeStartListener) removeStartListener();
     if (removeFinishListener) removeFinishListener();
@@ -39,7 +37,7 @@ onUnmounted(() => {
         <div v-if="isLoading"
             class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/30 backdrop-blur-[2px]">
             <div class="bg-white p-5 rounded-lg shadow-xl flex flex-col items-center">
-                <i class="pi pi-spin pi-spinner text-4xl text-blue-600"></i>
+                <i class="pi pi-spin pi-spinner text-4xl text-primary"></i>
                 <span class="mt-3 text-gray-600 font-medium">Đang tải...</span>
             </div>
         </div>

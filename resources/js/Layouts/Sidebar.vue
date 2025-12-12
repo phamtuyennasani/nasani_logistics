@@ -1,6 +1,6 @@
 <script setup>
-import ListMenu from '@/Plugins/ListMenu';
-import BlockMenu from './ItemMenu/BlockMenu.vue';
+import ListMenu from '@plugin/ListMenu';
+import BlockMenu from '@component/ItemMenu/BlockMenu.vue';
 import Scrollbar from 'smooth-scrollbar';
 import { onBeforeUnmount, onMounted, ref, computed } from 'vue';
 import { usePage } from '@inertiajs/vue3';

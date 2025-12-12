@@ -1,13 +1,24 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
+import { useOnline } from '@vueuse/core';
+import { toast } from 'vue-sonner';
 import { usePage } from '@inertiajs/vue3';
-import Logo from '../Components/Logo.vue';
-import Sidebar from '../Components/Sidebar.vue';
-import GlobalLoader from '../Components/GlobalLoader.vue';
+import Logo from '@component/Logo.vue';
+import Header from '@layout/Header.vue';
+import Footer from '@layout/Footer.vue';
+import Sidebar from '@layout/Sidebar.vue';
+import GlobalLoader from '@component/GlobalLoader.vue';
 const page = usePage();
 const user = computed(() => page.props.auth.user);
+const online = useOnline();
+watch(online, (isOnline) => {
+    if (isOnline) {
+        toast.success('Đã kết nối lại Internet', { duration: 3000, position: 'bottom-left' });
+    } else {
+        toast.error('Mất kết nối Internet', { duration: 5000, position: 'bottom-left' });
+    }
+});
 </script>
-
 <template>
     <main>
         <GlobalLoader />
@@ -21,12 +32,21 @@ const user = computed(() => page.props.auth.user);
                     <Sidebar />
                 </aside>
                 <div class="main-content flex-1 bg-[#ECF1F8] min-h-screen">
-                    <slot></slot>
+                    <div class="header-main-content bg-white">
+                        <Header />
+                    </div>
+                    <div class="body-main-content">
+                        <slot></slot>
+                    </div>
+                    <div class="footer-main-content">
+                        <Footer />
+                    </div>
                 </div>
             </div>
         </div>
         <div v-else>
             <slot></slot>
         </div>
+        <Toaster richColors position="bottom-center" />
     </main>
 </template>
