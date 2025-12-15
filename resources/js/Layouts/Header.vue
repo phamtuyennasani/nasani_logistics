@@ -8,7 +8,9 @@ import InfoUser from '@component/Header/InfoUser.vue';
             <SearchTracking />
         </div>
         <div class="header-right-component flex items-center justify-end flex-1">
-            <div class="header-action-button"></div>
+            <div class="header-action-button">
+
+            </div>
             <div class="header-action-user border-l border-[#ECF1F8] pl-[3.12rem]">
                 <InfoUser />
             </div>

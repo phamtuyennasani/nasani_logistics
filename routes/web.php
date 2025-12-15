@@ -9,6 +9,10 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/login', [App\Http\Controllers\User::class, 'login']);
 });
 Route::middleware(['auth'])->group(function () {
+    Route::get('/logout',function () {
+        auth()->logout();
+        return to_route('login');
+    })->name('logout');
     Route::get('/', function () {
         return to_route('manage');
     });
