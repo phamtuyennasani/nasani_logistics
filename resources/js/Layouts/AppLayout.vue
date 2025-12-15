@@ -25,22 +25,23 @@ watch(online, (isOnline) => {
         <div v-if="user">
             <div class="wrap-main-page flex">
                 <aside
-                    class="main-sidebar pl-[1.25rem] w-[21.8125rem] bg-white h-screen flex flex-col sticky top-0 border-r border-gray-100 z-50">
+                    class="main-sidebar pl-[1.25rem] w-[21.8125rem] bg-white h-screen fixed flex flex-col left-0 top-0 border-r border-gray-100 z-50">
                     <div class="shrink-0 pr-[1.25rem]">
                         <Logo />
                     </div>
                     <Sidebar />
                 </aside>
-                <div class="main-content flex-1 bg-[#ECF1F8] min-h-screen">
+                <div
+                    class="main-content flex-1 bg-[#ECF1F8] min-h-screen w-[calc(100%-21.8125rem)] ml-[21.8125rem] flex flex-col">
                     <div class="header-main-content bg-white">
                         <Header />
                     </div>
-                    <div class="body-main-content">
+                    <div class="body-main-content px-[2.38rem]">
                         <slot></slot>
                     </div>
-                    <div class="footer-main-content">
-                        <Footer />
-                    </div>
+                </div>
+                <div class="footer-main-content fixed bottom-0 pl-[21.8125rem] w-full">
+                    <Footer />
                 </div>
             </div>
         </div>

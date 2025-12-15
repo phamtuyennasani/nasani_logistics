@@ -40,3 +40,30 @@ div.wraper-login-form {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.slide-enter-from {
+    transform: translateY(-8px);
+    opacity: 0;
+}
+
+.slide-enter-active {
+    transition: transform 350ms ease, opacity 350ms ease;
+}
+
+.slide-enter-to {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.slide-leave-from {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.slide-leave-active {
+    transition: transform 350ms ease, opacity 350ms ease;
+}
+
+.slide-leave-to {
+    transform: translateY(-8px);
+    opacity: 0;
+}

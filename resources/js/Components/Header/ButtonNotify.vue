@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-const notify = ref();
+const notify = ref(null);
 const op = ref();
 const toggle = (event) => {
     op.value.toggle(event);
@@ -9,8 +9,8 @@ const toggle = (event) => {
 <template>
     <Button type="button" class="p-button-text overflow-visible p-button-plain !border-none !outline-none !shadow-none"
         @click="toggle">
-        <OverlayBadge :value="(notify > 0) ? notify : null"
-            :pt="{ pcBadge: { root: 'font-normal flex items-center justify-center min-w-[inherit]  w-[1.09313rem] h-[1.09313rem] bg-[#FF6270]' } }"
+        <OverlayBadge :value="(notify !== null) ? notify : null"
+            :pt="{ pcBadge: { root: 'font-normal flex items-center justify-center min-w-[inherit] rounded-full w-[1.09313rem] h-[1.09313rem] bg-[#FF6270]' } }"
             severity="danger" size="small">
             <svg xmlns="http://www.w3.org/2000/svg" width="27" height="29" viewBox="0 0 27 29" fill="none">
                 <path
@@ -22,7 +22,8 @@ const toggle = (event) => {
             <div class="flex flex-col gap-4 w-[25rem]">
                 <p class="text-lg font-medium">Thông báo</p>
                 <div class="flex flex-col gap-3 max-h-[15rem] overflow-y-auto">
-                    <p class="text-center text-gray-500">Bạn không có thông báo mới</p>
+                    <div v-if="notify !== null"></div>
+                    <p v-else class="text-center text-gray-500">Bạn không có thông báo mới</p>
                 </div>
             </div>
         </Popover>
