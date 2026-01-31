@@ -9,7 +9,6 @@ const props = defineProps({
         required: true,
     },
 });
-
 const openMenus = ref({});
 const toggle = (index) => {
     openMenus.value[index] = !openMenus.value[index];
@@ -23,19 +22,16 @@ const hasPermission = (item) => {
     if (!item.roles || item.roles.length === 0) return true;
     return item.roles.some(role => userRoles.value.includes(role));
 };
-
 const visibleChildren = computed(() => {
     if (!props.menu.children) return [];
     return props.menu.children.filter(item => hasPermission(item));
 });
-
 // Transition hooks for slide animation
 const beforeEnter = (el) => {
     el.style.height = '0';
     el.style.overflow = 'hidden';
     el.style.transition = 'height 0.3s ease-in-out';
 };
-
 const enter = (el) => {
     if (el.scrollHeight !== 0) {
         el.style.height = el.scrollHeight + 'px';
@@ -43,18 +39,15 @@ const enter = (el) => {
         el.style.height = 'auto';
     }
 };
-
 const afterEnter = (el) => {
     el.style.height = 'auto';
     el.style.overflow = 'visible';
 };
-
 const beforeLeave = (el) => {
     el.style.height = el.scrollHeight + 'px';
     el.style.overflow = 'hidden';
     el.style.transition = 'height 0.3s ease-in-out';
 };
-
 const leave = (el) => {
     getComputedStyle(el).height;
     requestAnimationFrame(() => {
@@ -62,7 +55,6 @@ const leave = (el) => {
     });
 };
 </script>
-
 <template>
     <div class="content-group-item">
         <ul class="space-y-[0.4rem]">
